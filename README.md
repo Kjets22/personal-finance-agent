@@ -107,10 +107,14 @@ python -m finance_agent --data sample_data --out /tmp/live_replay.json \
 Recordings are keyed by a `model + system + prompt` fingerprint that is validated
 on load, so a different model — or an edited prompt — misses loudly rather than
 replaying the wrong answer at you. Keep a live report, its summary and its
-recording from the same run: regenerating one means regenerating all three. **A
-re-run will not reproduce this recording exactly.** `temperature: 0` and a fixed
-seed constrain the model, not the tool path it chooses, and the trace below is one
-sample of that behaviour rather than a fixed point.
+recording from the same run: regenerating one means regenerating all three.
+
+**Re-running the capture on the same machine reproduced the recording byte for
+byte** — 13 calls, the same tool path, the same rejected summary, the same
+`degraded` status. That was checked rather than assumed, and it is what
+`temperature: 0`, `seed: 42` and a pinned model blob are supposed to buy. It is two
+runs on one machine, so it is evidence of determinism *here*; it is not a claim
+that a different GPU, Ollama build or quantization lands in the same place.
 
 ---
 
@@ -410,18 +414,20 @@ function-calling (small local models handle it poorly, and tolerating malformed
 output is the exercise); a database, caching or incremental runs; multi-month,
 multi-currency or multi-account balance reconciliation; a UI; CI; Docker.
 
-**With two more hours:** capture the run several more times and see how stable a
-7B model's tool choices actually are — one run is an existence proof, not a
-reliability claim, and step 10 of 10 says the margin is thin. Then measure category
-accuracy properly, by re-running with the pre-labelled rows' categories stripped so
-the model has to reproduce them. Then replace token matching with a stable
+**With two more hours:** perturb the input rather than repeating it. A second
+capture reproduced the first byte for byte, so re-running the *same* data proves
+only that the seed works; the open question is whether a reordered or extended CSV
+still lands inside the 10-step limit, which step 10 of 10 says is thin. Then measure
+category accuracy properly, by re-running with the pre-labelled rows' categories
+stripped so the model has to reproduce them. Then replace token matching with a stable
 `(account, transaction_id)` key if the exports ever carry one, which would retire
 the entire reconciliation heuristic.
 
 **Unverified:** `OllamaClient.complete()` has now executed against a live Ollama
-daemon, but every claim here about model behaviour rests on **one run of one model
-on one machine** and characterises nothing in general. No category-accuracy figure
-is claimed. A zero-income savings rate is reported as
+daemon, twice, identically. But that is still **two runs of one model on one
+machine**: it characterises nothing about qwen2.5:7b in general, and says nothing
+about other hardware, other Ollama builds or other inputs. No category-accuracy
+figure is claimed. A zero-income savings rate is reported as
 numeric `0` for output-contract compatibility though it is mathematically
 undefined. `transfers` is a gross row magnitude and would count both sides if both
 accounts were supplied. Concatenated merchant spellings (`WIDGET CO` against

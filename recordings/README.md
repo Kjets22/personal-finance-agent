@@ -34,8 +34,11 @@ python -m finance_agent --data sample_data --out /tmp/live_replay.json \
 python -m pytest -q
 ```
 
-A re-run will not reproduce this file byte for byte. Temperature 0 and a fixed
-seed constrain the text the model generates, not which tools it chooses.
+A second capture on this machine reproduced this file **byte for byte** — 13
+calls, identical tool path, identical rejected summary. Determinism across a
+different GPU, Ollama build or quantization is not claimed, so if your capture
+differs, regenerate the report and summary alongside it rather than forcing a
+match.
 
 ## `llm_recording.json` — the fixture
 

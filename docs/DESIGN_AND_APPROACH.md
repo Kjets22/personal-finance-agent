@@ -109,6 +109,12 @@ sentence, the approved template was substituted, and a warning was recorded. Thi
 is the trust boundary above behaving as designed on real output rather than on a
 fixture.
 
+The capture was run a second time and reproduced byte for byte: 13 calls, the
+same tool path, the same rejected summary. `temperature: 0` with a fixed seed and a
+pinned model blob is therefore reproducible on this machine, which is what makes
+the committed recording a fair artifact rather than a lucky draw.
+
 No live-model performance, category accuracy, production readiness or compliance
-assessment is claimed. One capture of one model on one machine is an existence
-proof for the code path, not a characterisation of the model.
+assessment is claimed. Two identical captures of one model on one machine are an
+existence proof for the code path and evidence of local determinism, not a
+characterisation of the model or a portability claim.
