@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finance-agent"
+version = "0.1.0"
+description = "Tool-using personal finance agent: LLM for meaning, code for money"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+finance-agent = "finance_agent.__main__:main"
+
+[tool.setuptools]
+packages = ["finance_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

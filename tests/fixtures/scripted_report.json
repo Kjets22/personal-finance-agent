@@ -1,0 +1,887 @@
+{
+  "status": "ok",
+  "period": {
+    "start": "2024-01-01",
+    "end": "2024-01-31"
+  },
+  "totals": {
+    "income": 11001.25,
+    "expenses": 3911.3,
+    "net": 7089.95,
+    "savings_rate": 0.6445
+  },
+  "by_category": {
+    "Housing": 1800.0,
+    "Food": 787.87,
+    "Home": 449.23,
+    "Shopping": 229.99,
+    "Transportation": 154.28,
+    "Insurance": 125.0,
+    "Cash": 100.0,
+    "Healthcare": 93.97,
+    "Utilities": 89.99,
+    "Other": 52.0,
+    "Entertainment": 28.97
+  },
+  "flagged": [
+    {
+      "id": "t003",
+      "date": "2024-01-02",
+      "description": "WHOLEFDS MKT #10452",
+      "amount": -87.34,
+      "reason": "Possible duplicate charge: same merchant and amount on 2024-01-02 and 2024-01-19 in transactions_uncategorized.csv; all kept"
+    },
+    {
+      "id": "t018",
+      "date": "2024-01-10",
+      "description": "Restaurant",
+      "amount": -42.0,
+      "reason": "Listed in expenses.csv but not found in bank_statement.csv"
+    },
+    {
+      "id": "t028",
+      "date": "2024-01-15",
+      "description": "Salary",
+      "amount": 3000.0,
+      "reason": "Listed in income.csv but not found in bank_statement.csv"
+    },
+    {
+      "id": "t030",
+      "date": "2024-01-16",
+      "description": "VENMO *JOHN SMITH",
+      "amount": -40.0,
+      "reason": "Person-to-person payment with unknown purpose"
+    },
+    {
+      "id": "t037",
+      "date": "2024-01-22",
+      "description": "ZELLE PAYMENT TO LANDLORD",
+      "amount": -1800.0,
+      "reason": "Single payment is 46% of this month's spending"
+    },
+    {
+      "id": "t041",
+      "date": "2024-01-25",
+      "description": "Refund AMAZON.COM",
+      "amount": 34.99,
+      "reason": "Refund with no matching charge in this period"
+    },
+    {
+      "id": "t042",
+      "date": "2024-01-26",
+      "description": "ACH CREDIT PAYROLL ACME CORP",
+      "amount": 3200.0,
+      "reason": "Deposit not recorded in income.csv; confirm its source"
+    },
+    {
+      "id": "t046",
+      "date": "2024-01-30",
+      "description": "Freelance Work",
+      "amount": 400.0,
+      "reason": "Listed in income.csv but dated outside the bank statement period (2024-01-01 to 2024-01-25); could not be verified"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "t001",
+      "date": "2024-01-01",
+      "description": "Salary",
+      "amount": 3000.0,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "bank_statement.csv:2",
+        "income.csv:2"
+      ]
+    },
+    {
+      "id": "t002",
+      "date": "2024-01-02",
+      "description": "Grocery Store",
+      "amount": -120.5,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:3",
+        "expenses.csv:2"
+      ]
+    },
+    {
+      "id": "t003",
+      "date": "2024-01-02",
+      "description": "WHOLEFDS MKT #10452",
+      "amount": -87.34,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:2"
+      ]
+    },
+    {
+      "id": "t004",
+      "date": "2024-01-03",
+      "description": "Gas Station",
+      "amount": -45.0,
+      "category": "Transportation",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:4",
+        "expenses.csv:3"
+      ]
+    },
+    {
+      "id": "t005",
+      "date": "2024-01-03",
+      "description": "SHELL OIL 5748291",
+      "amount": -52.18,
+      "category": "Transportation",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:3"
+      ]
+    },
+    {
+      "id": "t006",
+      "date": "2024-01-04",
+      "description": "Restaurant",
+      "amount": -35.75,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:5",
+        "expenses.csv:4"
+      ]
+    },
+    {
+      "id": "t007",
+      "date": "2024-01-04",
+      "description": "SQ *BLUE BOTTLE COFFEE",
+      "amount": -6.75,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "transactions_uncategorized.csv:4"
+      ]
+    },
+    {
+      "id": "t008",
+      "date": "2024-01-05",
+      "description": "Amazon Purchase",
+      "amount": -89.99,
+      "category": "Shopping",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:6",
+        "expenses.csv:5"
+      ]
+    },
+    {
+      "id": "t009",
+      "date": "2024-01-05",
+      "description": "AMZN MKTP US*AB12C3D4E",
+      "amount": -129.99,
+      "category": "Shopping",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:5"
+      ]
+    },
+    {
+      "id": "t010",
+      "date": "2024-01-06",
+      "description": "Netflix Subscription",
+      "amount": -15.99,
+      "category": "Entertainment",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:7",
+        "expenses.csv:6",
+        "transactions_uncategorized.csv:6"
+      ]
+    },
+    {
+      "id": "t011",
+      "date": "2024-01-07",
+      "description": "Pharmacy",
+      "amount": -25.3,
+      "category": "Healthcare",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:8",
+        "expenses.csv:7"
+      ]
+    },
+    {
+      "id": "t012",
+      "date": "2024-01-07",
+      "description": "UBER   *TRIP HELP.UBER.COM",
+      "amount": -23.4,
+      "category": "Transportation",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:7"
+      ]
+    },
+    {
+      "id": "t013",
+      "date": "2024-01-08",
+      "description": "Uber Ride",
+      "amount": -18.5,
+      "category": "Transportation",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:9",
+        "expenses.csv:8"
+      ]
+    },
+    {
+      "id": "t014",
+      "date": "2024-01-08",
+      "description": "CVS/PHARMACY #4412",
+      "amount": -18.67,
+      "category": "Healthcare",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "transactions_uncategorized.csv:8"
+      ]
+    },
+    {
+      "id": "t015",
+      "date": "2024-01-09",
+      "description": "Coffee Shop",
+      "amount": -4.5,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:10",
+        "expenses.csv:9"
+      ]
+    },
+    {
+      "id": "t016",
+      "date": "2024-01-09",
+      "description": "TST* JOE'S PIZZA DOWNTOWN",
+      "amount": -34.5,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:9"
+      ]
+    },
+    {
+      "id": "t017",
+      "date": "2024-01-10",
+      "description": "Home Depot",
+      "amount": -156.78,
+      "category": "Home",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:11",
+        "expenses.csv:10"
+      ]
+    },
+    {
+      "id": "t018",
+      "date": "2024-01-10",
+      "description": "Restaurant",
+      "amount": -42.0,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "expenses.csv:11"
+      ]
+    },
+    {
+      "id": "t019",
+      "date": "2024-01-10",
+      "description": "HOMEDEPOT.COM",
+      "amount": -203.45,
+      "category": "Home",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "transactions_uncategorized.csv:10"
+      ]
+    },
+    {
+      "id": "t020",
+      "date": "2024-01-11",
+      "description": "Gym Membership",
+      "amount": -50.0,
+      "category": "Healthcare",
+      "kind": "expense",
+      "category_source": "alias",
+      "sources": [
+        "bank_statement.csv:12",
+        "expenses.csv:12"
+      ]
+    },
+    {
+      "id": "t021",
+      "date": "2024-01-12",
+      "description": "Spotify Subscription",
+      "amount": -9.99,
+      "category": "Entertainment",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:13",
+        "expenses.csv:13",
+        "transactions_uncategorized.csv:11"
+      ]
+    },
+    {
+      "id": "t022",
+      "date": "2024-01-12",
+      "description": "PAYPAL *ETSYSHOP",
+      "amount": -45.0,
+      "category": "Shopping",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "transactions_uncategorized.csv:12"
+      ]
+    },
+    {
+      "id": "t023",
+      "date": "2024-01-13",
+      "description": "Grocery Store",
+      "amount": -95.25,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:14",
+        "expenses.csv:14"
+      ]
+    },
+    {
+      "id": "t024",
+      "date": "2024-01-13",
+      "description": "CHECKCARD 1314 SAFEWAY #2910",
+      "amount": -64.22,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:13"
+      ]
+    },
+    {
+      "id": "t025",
+      "date": "2024-01-14",
+      "description": "Car Insurance",
+      "amount": -125.0,
+      "category": "Insurance",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:15",
+        "expenses.csv:15",
+        "transactions_uncategorized.csv:14"
+      ]
+    },
+    {
+      "id": "t026",
+      "date": "2024-01-15",
+      "description": "Restaurant",
+      "amount": -28.5,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "bank_statement.csv:16",
+        "expenses.csv:16"
+      ]
+    },
+    {
+      "id": "t027",
+      "date": "2024-01-15",
+      "description": "Freelance Work",
+      "amount": 500.0,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "bank_statement.csv:17",
+        "income.csv:3"
+      ]
+    },
+    {
+      "id": "t028",
+      "date": "2024-01-15",
+      "description": "Salary",
+      "amount": 3000.0,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "income.csv:4"
+      ]
+    },
+    {
+      "id": "t029",
+      "date": "2024-01-15",
+      "description": "DOORDASH*CHIPOTLE",
+      "amount": -18.99,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:15"
+      ]
+    },
+    {
+      "id": "t030",
+      "date": "2024-01-16",
+      "description": "VENMO *JOHN SMITH",
+      "amount": -40.0,
+      "category": "Other",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:16"
+      ]
+    },
+    {
+      "id": "t031",
+      "date": "2024-01-17",
+      "description": "ATM WITHDRAWAL 001234",
+      "amount": -100.0,
+      "category": "Cash",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:17"
+      ]
+    },
+    {
+      "id": "t032",
+      "date": "2024-01-18",
+      "description": "APPLE.COM/BILL",
+      "amount": -2.99,
+      "category": "Entertainment",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "transactions_uncategorized.csv:18"
+      ]
+    },
+    {
+      "id": "t033",
+      "date": "2024-01-19",
+      "description": "WHOLEFDS MKT #10452",
+      "amount": -87.34,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:19"
+      ]
+    },
+    {
+      "id": "t034",
+      "date": "2024-01-20",
+      "description": "Consulting",
+      "amount": 750.0,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "bank_statement.csv:18",
+        "income.csv:5"
+      ]
+    },
+    {
+      "id": "t035",
+      "date": "2024-01-20",
+      "description": "TRANSFER TO SAVINGS",
+      "amount": -500.0,
+      "category": "Transfer",
+      "kind": "transfer",
+      "category_source": "rule",
+      "sources": [
+        "transactions_uncategorized.csv:20"
+      ]
+    },
+    {
+      "id": "t036",
+      "date": "2024-01-21",
+      "description": "POS DEBIT THE HOME DEPOT 123",
+      "amount": -89.0,
+      "category": "Home",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:21"
+      ]
+    },
+    {
+      "id": "t037",
+      "date": "2024-01-22",
+      "description": "ZELLE PAYMENT TO LANDLORD",
+      "amount": -1800.0,
+      "category": "Housing",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:22"
+      ]
+    },
+    {
+      "id": "t038",
+      "date": "2024-01-23",
+      "description": "STARBUCKS STORE 11234",
+      "amount": -5.45,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "transactions_uncategorized.csv:23"
+      ]
+    },
+    {
+      "id": "t039",
+      "date": "2024-01-24",
+      "description": "UNKNOWN MERCHANT 998877",
+      "amount": -12.0,
+      "category": "Other",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:24"
+      ]
+    },
+    {
+      "id": "t040",
+      "date": "2024-01-25",
+      "description": "Dividend Payment",
+      "amount": 150.0,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "bank_statement.csv:19",
+        "income.csv:6"
+      ]
+    },
+    {
+      "id": "t041",
+      "date": "2024-01-25",
+      "description": "Refund AMAZON.COM",
+      "amount": 34.99,
+      "category": "Shopping",
+      "kind": "refund",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:25"
+      ]
+    },
+    {
+      "id": "t042",
+      "date": "2024-01-26",
+      "description": "ACH CREDIT PAYROLL ACME CORP",
+      "amount": 3200.0,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "transactions_uncategorized.csv:26"
+      ]
+    },
+    {
+      "id": "t043",
+      "date": "2024-01-27",
+      "description": "COMCAST CABLE COMM",
+      "amount": -89.99,
+      "category": "Utilities",
+      "kind": "expense",
+      "category_source": "csv",
+      "sources": [
+        "transactions_uncategorized.csv:27"
+      ]
+    },
+    {
+      "id": "t044",
+      "date": "2024-01-28",
+      "description": "LYFT *RIDE",
+      "amount": -15.2,
+      "category": "Transportation",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:28"
+      ]
+    },
+    {
+      "id": "t045",
+      "date": "2024-01-29",
+      "description": "COSTCO WHSE #0421",
+      "amount": -156.78,
+      "category": "Food",
+      "kind": "expense",
+      "category_source": "llm",
+      "sources": [
+        "transactions_uncategorized.csv:29"
+      ]
+    },
+    {
+      "id": "t046",
+      "date": "2024-01-30",
+      "description": "Freelance Work",
+      "amount": 400.0,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "income.csv:7"
+      ]
+    },
+    {
+      "id": "t047",
+      "date": "2024-01-30",
+      "description": "INTEREST CREDIT",
+      "amount": 1.25,
+      "category": "Income",
+      "kind": "income",
+      "category_source": "rule",
+      "sources": [
+        "transactions_uncategorized.csv:30"
+      ]
+    }
+  ],
+  "transfers": {
+    "total": 500.0,
+    "items": [
+      {
+        "id": "t035",
+        "date": "2024-01-20",
+        "description": "TRANSFER TO SAVINGS",
+        "amount": -500.0
+      }
+    ]
+  },
+  "excluded": [
+    {
+      "date": "2024-01-31",
+      "description": "PENDING AUTH TARGET T-8821",
+      "amount": 0.0,
+      "source": "transactions_uncategorized.csv:31",
+      "reason": "pending authorization / zero amount; not a settled transaction"
+    }
+  ],
+  "warnings": [],
+  "agent_trace": [
+    {
+      "step": 1,
+      "tool": "list_uncategorized",
+      "args": {
+        "limit": 8
+      },
+      "ok": true,
+      "observation": {
+        "remaining": 16,
+        "items": [
+          {
+            "id": "t003",
+            "merchant": "wholefds mkt",
+            "raw": "WHOLEFDS MKT #10452"
+          },
+          {
+            "id": "t005",
+            "merchant": "shell oil",
+            "raw": "SHELL OIL 5748291"
+          },
+          {
+            "id": "t009",
+            "merchant": "amzn mktp us",
+            "raw": "AMZN MKTP US*AB12C3D4E"
+          },
+          {
+            "id": "t012",
+            "merchant": "uber trip help uber",
+            "raw": "UBER   *TRIP HELP.UBER.COM"
+          },
+          {
+            "id": "t016",
+            "merchant": "joe's pizza downtown",
+            "raw": "TST* JOE'S PIZZA DOWNTOWN"
+          },
+          {
+            "id": "t024",
+            "merchant": "safeway",
+            "raw": "CHECKCARD 1314 SAFEWAY #2910"
+          },
+          {
+            "id": "t029",
+            "merchant": "doordash chipotle",
+            "raw": "DOORDASH*CHIPOTLE"
+          },
+          {
+            "id": "t030",
+            "merchant": "venmo john smith",
+            "raw": "VENMO *JOHN SMITH"
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "tool": "categorize_batch",
+      "args": {
+        "ids": [
+          "t003",
+          "t005",
+          "t009",
+          "t012",
+          "t016",
+          "t024",
+          "t029",
+          "t030"
+        ]
+      },
+      "ok": true,
+      "observation": {
+        "categorized": 8,
+        "fell_back_to_uncategorized": 0,
+        "remaining": 8
+      }
+    },
+    {
+      "step": 3,
+      "tool": "list_uncategorized",
+      "args": {
+        "limit": 8
+      },
+      "ok": true,
+      "observation": {
+        "remaining": 8,
+        "items": [
+          {
+            "id": "t031",
+            "merchant": "atm withdrawal",
+            "raw": "ATM WITHDRAWAL 001234"
+          },
+          {
+            "id": "t033",
+            "merchant": "wholefds mkt",
+            "raw": "WHOLEFDS MKT #10452"
+          },
+          {
+            "id": "t036",
+            "merchant": "the home depot",
+            "raw": "POS DEBIT THE HOME DEPOT 123"
+          },
+          {
+            "id": "t037",
+            "merchant": "zelle payment to landlord",
+            "raw": "ZELLE PAYMENT TO LANDLORD"
+          },
+          {
+            "id": "t039",
+            "merchant": "unknown merchant",
+            "raw": "UNKNOWN MERCHANT 998877"
+          },
+          {
+            "id": "t041",
+            "merchant": "refund amazon",
+            "raw": "Refund AMAZON.COM"
+          },
+          {
+            "id": "t044",
+            "merchant": "lyft ride",
+            "raw": "LYFT *RIDE"
+          },
+          {
+            "id": "t045",
+            "merchant": "costco whse",
+            "raw": "COSTCO WHSE #0421"
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "tool": "categorize_batch",
+      "args": {
+        "ids": [
+          "t031",
+          "t033",
+          "t036",
+          "t037",
+          "t039",
+          "t041",
+          "t044",
+          "t045"
+        ]
+      },
+      "ok": true,
+      "observation": {
+        "categorized": 8,
+        "fell_back_to_uncategorized": 0,
+        "remaining": 0
+      }
+    },
+    {
+      "step": 5,
+      "tool": "compute_totals",
+      "args": {},
+      "ok": true,
+      "observation": {
+        "income": 11001.25,
+        "expenses": 3911.3,
+        "net": 7089.95,
+        "savings_rate": 0.6445,
+        "top_categories": [
+          [
+            "Housing",
+            1800.0
+          ],
+          [
+            "Food",
+            787.87
+          ],
+          [
+            "Home",
+            449.23
+          ]
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "tool": "write_report",
+      "args": {
+        "summary": "In {period} you received {income} and spent {expenses}, leaving {net} ({savings_rate} savings rate). The largest spending category was {top_category} at {top_category_amount}. {transfers} moved between your own accounts and is not counted as spending. {flag_count} items are flagged for review."
+      },
+      "ok": true,
+      "observation": {
+        "report": "finalized",
+        "summary_source": "llm_selected_template"
+      }
+    }
+  ],
+  "llm": {
+    "model": "scripted-perfect",
+    "summary_source": "llm_selected_template"
+  },
+  "summary": "In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Housing at $1,800.00. $500.00 moved between your own accounts and is not counted as spending. 8 items are flagged for review."
+}
