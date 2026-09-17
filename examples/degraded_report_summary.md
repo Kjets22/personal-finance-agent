@@ -2,7 +2,7 @@
 
 Status: **degraded**
 
-In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Uncategorized at $2,675.95. $500.00 moved between your own accounts and is not counted as spending. 24 items are flagged for review.
+In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Uncategorized at $2,675.95. $500.00 moved between your own accounts and is not counted as spending. 25 items are flagged for review.
 
 | Total | Amount |
 | --- | ---: |
@@ -25,7 +25,7 @@ In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (
 | Transportation | 63.50 |
 | Entertainment | 28.97 |
 
-## Flagged (24)
+## Flagged (25)
 
 - 2024-01-02 WHOLEFDS MKT #10452: Category could not be determined (model failure)
 - 2024-01-02 WHOLEFDS MKT #10452: Possible duplicate charge: same merchant and amount on 2024-01-02 and 2024-01-19 in transactions_uncategorized.csv; all kept
@@ -39,6 +39,7 @@ In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (
 - 2024-01-15 DOORDASH*CHIPOTLE: Category could not be determined (model failure)
 - 2024-01-16 VENMO *JOHN SMITH: Person-to-person payment with unknown purpose
 - 2024-01-16 VENMO *JOHN SMITH: Category could not be determined (model failure)
+- 2024-01-17 ATM WITHDRAWAL 001234: Cash withdrawal; the amount is certain but the spending is untracked
 - 2024-01-17 ATM WITHDRAWAL 001234: Category could not be determined (model failure)
 - 2024-01-19 WHOLEFDS MKT #10452: Category could not be determined (model failure)
 - 2024-01-21 POS DEBIT THE HOME DEPOT 123: Category could not be determined (model failure)

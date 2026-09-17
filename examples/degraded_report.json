@@ -111,6 +111,13 @@
       "date": "2024-01-17",
       "description": "ATM WITHDRAWAL 001234",
       "amount": -100.0,
+      "reason": "Cash withdrawal; the amount is certain but the spending is untracked"
+    },
+    {
+      "id": "t031",
+      "date": "2024-01-17",
+      "description": "ATM WITHDRAWAL 001234",
+      "amount": -100.0,
       "reason": "Category could not be determined (model failure)"
     },
     {
@@ -835,5 +842,5 @@
     "model": "garbage",
     "summary_source": "template"
   },
-  "summary": "In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Uncategorized at $2,675.95. $500.00 moved between your own accounts and is not counted as spending. 24 items are flagged for review."
+  "summary": "In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Uncategorized at $2,675.95. $500.00 moved between your own accounts and is not counted as spending. 25 items are flagged for review."
 }

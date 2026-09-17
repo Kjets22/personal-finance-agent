@@ -186,3 +186,30 @@ def test_sample_data_totals_are_unchanged_by_all_of_the_above():
     assert totals.expenses == Decimal("3911.30")
     assert totals.net == Decimal("7089.95")
     assert totals.savings_rate == Decimal("0.6445")
+
+
+# --------------------------------------------------------------------------
+# 5. Cash withdrawals are flagged, as the README says they are.
+#    Before: the README claimed ATM outflows were flagged for unknowable end
+#    use, but only Venmo/Zelle/Cash App matched, so the ATM row was silent.
+# --------------------------------------------------------------------------
+
+def test_cash_withdrawals_are_flagged():
+    from finance_agent.flags import detect_flags  # noqa: PLC0415
+    ledger = build_ledger({
+        "transactions_uncategorized.csv": [
+            row("transactions_uncategorized.csv", 2, 17, "ATM WITHDRAWAL 001234", "-100.00"),
+        ],
+    }, [])
+    totals = compute_totals(ledger.transactions)
+    reasons = [f["reason"] for f in detect_flags(ledger.transactions, None, totals)]
+    assert any("Cash withdrawal" in r for r in reasons), reasons
+
+
+def test_the_atm_row_in_the_sample_report_is_flagged():
+    report = json.loads((ROOT / "report.json").read_text(encoding="utf-8"))
+    atm = next(t for t in report["transactions"] if "ATM" in t["description"])
+    flagged_ids = {f["id"] for f in report["flagged"]}
+    assert atm["id"] in flagged_ids
+    # It stays an expense: the money did leave the account.
+    assert atm["kind"] == "expense" and atm["amount"] == -100.0

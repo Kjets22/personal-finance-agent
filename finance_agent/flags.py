@@ -17,6 +17,9 @@ MANUAL_FILES = frozenset({"expenses.csv", "income.csv"})
 STATEMENT_ONLY = frozenset({"transactions_uncategorized.csv"})
 _P2P = re.compile(r"\b(venmo|zelle|cash app)\b", re.IGNORECASE)
 _KNOWN_PURPOSE = re.compile(r"\b(landlord|rent)\b", re.IGNORECASE)
+# Cash leaves the account and then stops being traceable. The amount is certain,
+# so it stays an expense, but nothing downstream can say what it bought.
+_CASH_OUT = re.compile(r"\batm\b|\bcash withdrawal\b", re.IGNORECASE)
 
 
 def detect_flags(
@@ -53,6 +56,8 @@ def detect_flags(
             add(t, "Refund with no matching charge in this period")
         if t.kind is Kind.EXPENSE and _P2P.search(t.description) and not _KNOWN_PURPOSE.search(t.description):
             add(t, "Person-to-person payment with unknown purpose")
+        if t.kind is Kind.EXPENSE and _CASH_OUT.search(t.description):
+            add(t, "Cash withdrawal; the amount is certain but the spending is untracked")
         if t.kind is Kind.EXPENSE and totals.expenses > 0 and -t.amount > totals.expenses * LARGE_EXPENSE_SHARE:
             share = (-t.amount / totals.expenses * 100).quantize(Decimal("1"))
             add(t, f"Single payment is {share}% of this month's spending")

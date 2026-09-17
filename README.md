@@ -28,7 +28,7 @@ variable to a flag. Both commands work in PowerShell and POSIX shells.
 The replay run prints:
 
 ```
-status=ok income=11001.25 expenses=3911.30 net=7089.95 savings_rate=0.6445 flagged=8 warnings=0
+status=ok income=11001.25 expenses=3911.30 net=7089.95 savings_rate=0.6445 flagged=9 warnings=0
 ```
 
 | Income | Net expenses | Net | Savings rate | Transfers excluded |
@@ -241,13 +241,13 @@ step 7 write_report        ok=True
 
 `--llm garbage` is the harder demo: the model never returns anything usable, the
 loop stops after 3 failed turns, and the deterministic fallback still produces
-correct headline totals with `status=degraded` and 24 flagged rows.
+correct headline totals with `status=degraded` and 25 flagged rows.
 
 ---
 
 ## Optional extras
 
-Took **one**: duplicate and anomaly detection into `flagged` (`flags.py`).
+Took **one**: duplicate and anomaly detection into `flagged` (`flags.py`; 9 entries on the sample data).
 **Skipped** categorization-accuracy measurement — with a hand-authored recording it
 would score 100% by construction, a meaningless number dressed as a metric.
 
@@ -281,7 +281,12 @@ regression test in `tests/test_regressions.py`:
    correct. Fixed by the narrow relaxation described above.
 4. **`summary_source` claimed `"llm"`** for wording the model only selected from an
    approved list. Relabelled `"llm_selected_template"`.
-5. **2,225 lines of documentation were deleted** — `docs/archive/` and a 523-line
+5. **The README claimed ATM withdrawals were flagged; they were not.** Only
+   Venmo/Zelle/Cash App matched, so a $100 cash withdrawal with untraceable end
+   use passed silently. Found by an independent verification pass over this tree,
+   not by me. Cash-out is now its own flag rule, which is why the sample run
+   reports 9 flagged rows rather than 8.
+6. **2,225 lines of documentation were deleted** — `docs/archive/` and a 523-line
    `docs/CODE_CHANGES.patch`, material the previous README itself called possibly
    outdated. A change log against a prior revision is not a deliverable, and
    nobody can defend it in a 30-minute walkthrough.

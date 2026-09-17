@@ -68,7 +68,7 @@ def test_expected_flags(data_dir, out_path):
     assert descriptions == sorted([
         "WHOLEFDS MKT #10452", "Salary", "Restaurant", "Freelance Work",
         "ACH CREDIT PAYROLL ACME CORP", "Refund AMAZON.COM", "VENMO *JOHN SMITH",
-        "ZELLE PAYMENT TO LANDLORD",
+        "ZELLE PAYMENT TO LANDLORD", "ATM WITHDRAWAL 001234",
     ])
     assert any("46%" in f["reason"] for f in report["flagged"])
     assert reasons  # readable reasons exist

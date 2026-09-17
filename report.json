@@ -53,6 +53,13 @@
       "reason": "Person-to-person payment with unknown purpose"
     },
     {
+      "id": "t031",
+      "date": "2024-01-17",
+      "description": "ATM WITHDRAWAL 001234",
+      "amount": -100.0,
+      "reason": "Cash withdrawal; the amount is certain but the spending is untracked"
+    },
+    {
       "id": "t037",
       "date": "2024-01-22",
       "description": "ZELLE PAYMENT TO LANDLORD",
@@ -892,5 +899,5 @@
     "model": "hand-authored-fixture",
     "summary_source": "llm_selected_template"
   },
-  "summary": "In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Housing at $1,800.00. $500.00 moved between your own accounts and is not counted as spending. 8 items are flagged for review."
+  "summary": "In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Housing at $1,800.00. $500.00 moved between your own accounts and is not counted as spending. 9 items are flagged for review."
 }
