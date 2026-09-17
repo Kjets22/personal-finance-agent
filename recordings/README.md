@@ -11,8 +11,8 @@ exercised end to end. Its first controller reply is deliberately unparseable, so
 plain replay demonstrates the recovery path. Regenerate it after changing any
 prompt — fingerprints are validated on load and a stale prompt will miss.
 
-`llm_responses.json` is the slot for a genuine recording and is intentionally
-**empty**. `tests/test_e2e_replay.py::test_committed_real_recording_replays` skips
+`llm_responses.json` is the filename a genuine recording must take. That file is
+intentionally **absent**, not empty. `tests/test_e2e_replay.py::test_committed_real_recording_replays` skips
 until it exists, and that test is deliberately left skipped rather than repointed
 at the fixture: relabelling a scripted fixture as a live recording is the one
 thing that would make this submission dishonest.
