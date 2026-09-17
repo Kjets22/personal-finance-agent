@@ -1,5 +1,5 @@
 {
-  "status": "ok",
+  "status": "degraded",
   "period": {
     "start": "2024-01-01",
     "end": "2024-01-31"
@@ -12,9 +12,9 @@
   },
   "by_category": {
     "Housing": 1800.0,
-    "Food": 787.87,
+    "Food": 631.09,
     "Home": 449.23,
-    "Shopping": 229.99,
+    "Shopping": 386.77,
     "Transportation": 154.28,
     "Insurance": 125.0,
     "Cash": 100.0,
@@ -643,7 +643,7 @@
       "date": "2024-01-29",
       "description": "COSTCO WHSE #0421",
       "amount": -156.78,
-      "category": "Food",
+      "category": "Shopping",
       "kind": "expense",
       "category_source": "llm",
       "sources": [
@@ -695,19 +695,12 @@
       "reason": "pending authorization / zero amount; not a settled transaction"
     }
   ],
-  "warnings": [],
+  "warnings": [
+    "model summary rejected (contains digits outside placeholders); template used"
+  ],
   "agent_trace": [
     {
       "step": 1,
-      "tool": null,
-      "model_reply": "Sure! To build this report I should probably start by looking at which transactions are still missing a category, and then add everything up.",
-      "ok": false,
-      "observation": {
-        "error": "could not read your reply as a tool call (no JSON object found)"
-      }
-    },
-    {
-      "step": 2,
       "tool": "list_uncategorized",
       "args": {
         "limit": 8
@@ -760,7 +753,7 @@
       }
     },
     {
-      "step": 3,
+      "step": 2,
       "tool": "categorize_batch",
       "args": {
         "ids": [
@@ -782,40 +775,88 @@
       }
     },
     {
+      "step": 3,
+      "tool": "compute_totals",
+      "args": {},
+      "ok": true,
+      "observation": {
+        "income": 11001.25,
+        "expenses": 3911.3,
+        "net": 7089.95,
+        "savings_rate": 0.6445,
+        "top_categories": [
+          [
+            "Uncategorized",
+            2225.33
+          ],
+          [
+            "Food",
+            543.75
+          ],
+          [
+            "Home",
+            360.23
+          ]
+        ]
+      }
+    },
+    {
       "step": 4,
-      "tool": "list_uncategorized",
+      "tool": "write_report",
       "args": {
-        "limit": 8
+        "summary": "In {period} you received {income} and spent {expenses}, leaving {net} ({savings_rate} savings rate). The largest spending category was {top_category} at {top_category_amount}. {transfers} moved between your own accounts and is not counted as spending. {flag_count} items are flagged for review."
+      },
+      "ok": false,
+      "observation": {
+        "error": "8 transactions still need a category (e.g. ['t031', 't033', 't036', 't037', 't039']); call categorize_batch first"
+      }
+    },
+    {
+      "step": 5,
+      "tool": "categorize_batch",
+      "args": {
+        "ids": [
+          "t031",
+          "t033",
+          "t036",
+          "t037",
+          "t039"
+        ]
       },
       "ok": true,
       "observation": {
-        "remaining": 8,
+        "categorized": 5,
+        "fell_back_to_uncategorized": 0,
+        "remaining": 3
+      }
+    },
+    {
+      "step": 6,
+      "tool": "categorize_batch",
+      "args": {
+        "ids": [
+          "t031",
+          "t033",
+          "t036",
+          "t037",
+          "t039"
+        ]
+      },
+      "ok": false,
+      "observation": {
+        "error": "these ids do not need a category: ['t031', 't033', 't036', 't037', 't039']"
+      }
+    },
+    {
+      "step": 7,
+      "tool": "list_uncategorized",
+      "args": {
+        "limit": 3
+      },
+      "ok": true,
+      "observation": {
+        "remaining": 3,
         "items": [
-          {
-            "id": "t031",
-            "merchant": "atm withdrawal",
-            "raw": "ATM WITHDRAWAL 001234"
-          },
-          {
-            "id": "t033",
-            "merchant": "wholefds mkt",
-            "raw": "WHOLEFDS MKT #10452"
-          },
-          {
-            "id": "t036",
-            "merchant": "the home depot",
-            "raw": "POS DEBIT THE HOME DEPOT 123"
-          },
-          {
-            "id": "t037",
-            "merchant": "zelle payment to landlord",
-            "raw": "ZELLE PAYMENT TO LANDLORD"
-          },
-          {
-            "id": "t039",
-            "merchant": "unknown merchant",
-            "raw": "UNKNOWN MERCHANT 998877"
-          },
           {
             "id": "t041",
             "merchant": "refund amazon",
@@ -835,15 +876,10 @@
       }
     },
     {
-      "step": 5,
+      "step": 8,
       "tool": "categorize_batch",
       "args": {
         "ids": [
-          "t031",
-          "t033",
-          "t036",
-          "t037",
-          "t039",
           "t041",
           "t044",
           "t045"
@@ -851,13 +887,13 @@
       },
       "ok": true,
       "observation": {
-        "categorized": 8,
+        "categorized": 3,
         "fell_back_to_uncategorized": 0,
         "remaining": 0
       }
     },
     {
-      "step": 6,
+      "step": 9,
       "tool": "compute_totals",
       "args": {},
       "ok": true,
@@ -873,7 +909,7 @@
           ],
           [
             "Food",
-            787.87
+            631.09
           ],
           [
             "Home",
@@ -883,21 +919,21 @@
       }
     },
     {
-      "step": 7,
+      "step": 10,
       "tool": "write_report",
       "args": {
-        "summary": "In {period} you received {income} and spent {expenses}, leaving {net} ({savings_rate} savings rate). The largest spending category was {top_category} at {top_category_amount}. {transfers} moved between your own accounts and is not counted as spending. {flag_count} items are flagged for review."
+        "summary": "In the period you received 11001.25 and spent 3911.3, leaving 7089.95 (64.45 savings rate). The largest spending category was Housing at 1800.0. 0 items are flagged for review."
       },
       "ok": true,
       "observation": {
         "report": "finalized",
-        "summary_source": "llm_selected_template"
+        "summary_source": "template"
       }
     }
   ],
   "llm": {
-    "model": "hand-authored-fixture",
-    "summary_source": "llm_selected_template"
+    "model": "qwen2.5:7b",
+    "summary_source": "template"
   },
   "summary": "In January 2024 you received $11,001.25 and spent $3,911.30, leaving $7,089.95 (64.45% savings rate). The largest spending category was Housing at $1,800.00. $500.00 moved between your own accounts and is not counted as spending. 9 items are flagged for review."
 }

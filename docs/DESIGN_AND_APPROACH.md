@@ -93,8 +93,22 @@ between promotions can leave a summary from another run; JSON is authoritative.
 
 ## Verification and honest limits
 
-167 offline tests pass and one is skipped, awaiting a real Ollama recording.
-Strict replay from the committed recording and the broken-model CLI example were
-both run. The sample headline totals are unchanged by every fix listed in the
-README. No live-model performance, category accuracy, production readiness or
-compliance assessment is claimed.
+170 offline tests pass and none are skipped. The formerly skipped test,
+`test_committed_real_recording_replays`, now runs: a real `qwen2.5:7b` run was
+captured through Ollama on 2026-09-17 to `recordings/llm_responses.json`, and that
+recording replays under `--replay-strict` to exactly the committed `report.json`.
+Strict replay from both recordings and the broken-model CLI example were all run.
+The sample headline totals are unchanged by every fix listed in the README and by
+the live run itself; only `by_category` moved, because the live model called
+COSTCO WHSE #0421 `Shopping` where the fixture called it `Food`.
+
+The live run finished `degraded`. On its last turn the model wrote literal digits
+into the summary in place of the placeholders, and one of them was wrong: it
+claimed zero flagged items when nine were flagged. `validate_summary` rejected the
+sentence, the approved template was substituted, and a warning was recorded. This
+is the trust boundary above behaving as designed on real output rather than on a
+fixture.
+
+No live-model performance, category accuracy, production readiness or compliance
+assessment is claimed. One capture of one model on one machine is an existence
+proof for the code path, not a characterisation of the model.
